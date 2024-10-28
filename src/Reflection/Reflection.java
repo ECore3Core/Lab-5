@@ -1,17 +1,21 @@
 package Reflection;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import MainVehicles.Car;
-
 public class Reflection {
-    public static void SetPriceByName(Car car, String name, double price){
+    public static void SetPriceByName(String className, String methodName, String name, String price){
         try{
-            Method method = car.getClass().getMethod("setPrice", String.class, double.class);
-            method.invoke(car, name, price);
+            Class clazz = Class.forName(className);
+            Constructor constructor = clazz.getConstructor(String.class, int.class);
+            Object obj = constructor.newInstance("BMW", 10);
+            Method method = clazz.getMethod(methodName, String.class, double.class);
+            method.invoke(obj, name, Double.parseDouble(price));
+
+            System.out.println(obj);
         }
-        catch(NoSuchMethodException | IllegalAccessException | InvocationTargetException e){
+        catch(NoSuchMethodException | ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException | IllegalArgumentException e){
             e.printStackTrace();
         }
     }

@@ -51,7 +51,7 @@ public class Motorcycle implements Vehicle{
         this.brand = brand;
         size = modelLength;
         for(int i = 0; i < modelLength; i++){
-            Model model = new Model("Moto " + i, 100 + i);
+            Model model = new Model("Moto" + i, 100 + i);
             model.next = head;
             model.prev = head.prev;
             head.prev.next = model;

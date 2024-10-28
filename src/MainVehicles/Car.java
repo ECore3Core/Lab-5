@@ -39,7 +39,7 @@ public class Car implements Vehicle{
         this.brand = brand;
         models = new Model[modelsLength];
         for(int i = 0; i < modelsLength; i++){
-            models[i] = new Model("Car " + i, 100 + i);
+            models[i] = new Model("Car" + i, 100 + i);
         }
     }
     private int findIndexOfModel(String modelName){

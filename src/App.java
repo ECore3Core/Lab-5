@@ -1,18 +1,9 @@
-import java.io.*;
-import Vehicle.*;
-import Exceptions.*;
-import MainVehicles.Car;
-import MainVehicles.Motorcycle;
 import Reflection.Reflection;
+import MainVehicles.*;
 
 public class App {
-    public static void main(String[] args) throws IOException, NoSuchModelNameException, DuplicateModelNameException, ClassNotFoundException, CloneNotSupportedException{
-        
-        Car car = new Car("BMW", 10);
-        car.printInfo();
-
-        Reflection.SetPriceByName(car, "Car 3", 15);
-
-        car.printInfo();
+    public static void main(String[] args){
+        System.out.println(Car.class.getName());
+        Reflection.SetPriceByName(args[0], args[1], args[2], args[3]);
     }
 }
