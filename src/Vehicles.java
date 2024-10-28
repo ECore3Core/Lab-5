@@ -1,4 +1,7 @@
 import java.io.*;
+import java.lang.reflect.Constructor;
+
+import java.lang.reflect.*;
 
 import Exceptions.DuplicateModelNameException;
 import Exceptions.NoSuchModelNameException;
@@ -101,5 +104,17 @@ public class Vehicles {
         }
         bfReader.close();
         return vehicle;
+    }
+    public static Vehicle createVehicle(String markName, int modelsLength, Vehicle v){
+        try{
+            Class clazz = v.getClass();
+            Constructor constructor = clazz.getConstructor(String.class, int.class);
+            Vehicle vehicle = (Vehicle) constructor.newInstance(markName, modelsLength);
+            return vehicle;
+        }
+        catch(InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }   
