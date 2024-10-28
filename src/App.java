@@ -1,31 +1,18 @@
 import java.io.*;
 import Vehicle.*;
 import Exceptions.*;
+import MainVehicles.Car;
+import MainVehicles.Motorcycle;
+import Reflection.Reflection;
 
 public class App {
     public static void main(String[] args) throws IOException, NoSuchModelNameException, DuplicateModelNameException, ClassNotFoundException, CloneNotSupportedException{
         
-        //тест equals, clone
-        Car car = new Car("BMW", 5);
-        Car car2 = (Car)car.clone();
-        System.out.println(car2.equals(car));
-        car.setPrice("Car 1", 10);
-        System.out.println(car.equals(car2));
-        System.out.println(car);
-        System.out.println(car2);
+        Car car = new Car("BMW", 10);
+        car.printInfo();
 
-        Motorcycle moto = new Motorcycle("BMW", 5);
-        Motorcycle moto1 = (Motorcycle)moto.clone();
-        System.out.println(moto1.equals(moto));
-        moto.deleteModel("Moto 0");
-        System.out.println(moto.equals(moto1));
-        System.out.println(moto);
-        System.out.println(moto1);
+        Reflection.SetPriceByName(car, "Car 3", 15);
 
-        //тест toString
-        System.out.println(car);
-
-        //тест hashCode()
-        System.out.println(moto.hashCode());
+        car.printInfo();
     }
 }

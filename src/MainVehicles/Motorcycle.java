@@ -1,9 +1,11 @@
+package MainVehicles;
+
 import java.time.LocalDate;
 import Vehicle.Vehicle;
 import java.io.*;
 import Exceptions.*;
 
-class Motorcycle implements Vehicle{
+public class Motorcycle implements Vehicle{
     private class Model implements Serializable{
         String name;
         double price;

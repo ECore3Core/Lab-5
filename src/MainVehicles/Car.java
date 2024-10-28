@@ -1,9 +1,11 @@
+package MainVehicles;
+
 import java.util.Arrays;
 import Exceptions.*;
 import Vehicle.Vehicle;
 import java.io.*;
 
-class Car implements Vehicle{
+public class Car implements Vehicle{
     private String brand;
     public String getBrand(){return brand;}
     public void setBrand(String newBrand){brand = newBrand;}

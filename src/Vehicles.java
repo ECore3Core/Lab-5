@@ -2,6 +2,7 @@ import java.io.*;
 
 import Exceptions.DuplicateModelNameException;
 import Exceptions.NoSuchModelNameException;
+import MainVehicles.Car;
 import Vehicle.Vehicle;
 
 public class Vehicles {
