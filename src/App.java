@@ -35,5 +35,25 @@ public class App {
         for(String s : quadBikeNames){
             System.out.print(s + " ");
         }
+        double[] quadBikePrices = quadBike.getModelsPrices();
+        for(double d : quadBikePrices){
+            System.out.print(d + " ");
+        }
+        System.out.println();
+
+        //Задание 5
+        Moped moped = new Moped("Yamaha", 10);
+        moped.printInfo();
+        moped.deleteModel("Moped1");
+        moped.printInfo();
+        moped.setModelName("Moped4", "kal");
+        moped.setPrice("Moped2", 15);
+        moped.printInfo();
+        moped.addModel("bab", 5);
+        moped.printInfo();
+        String[] mopedNames = moped.getModelsNames();
+        for(String s : mopedNames){
+            System.out.print(s + " ");
+        }
     }
 }

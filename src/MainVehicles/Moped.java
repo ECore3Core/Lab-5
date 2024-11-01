@@ -29,8 +29,9 @@ public class Moped {
     LinkedList<Model> models;
     public Moped(String mark, int modelsSize){
         this.mark = mark;
+        models = new LinkedList<>();
         for(int i = 0; i < modelsSize; i++){
-            models.add(new Model("QuadBike" + i, 100.0 + i));
+            models.add(new Model("Moped" + i, 100.0 + i));
         }
     }
     public String getBrand(){
@@ -40,15 +41,25 @@ public class Moped {
         mark = brand;
     }
     public void setModelName(String originalName, String newName) throws NoSuchModelNameException, DuplicateModelNameException{
+        boolean foundDuplicate = false;
+        boolean foundOriginal = false;
+        Model neededModel = models.get(0);
         for(Model model : models){
             if(model.getName().equals(newName)){
-                throw new DuplicateModelNameException("Модель с таким названием уже существует.");
+                foundDuplicate = true;
             }
             if(model.getName().equals(originalName)){
-                model.setName(newName);
-                break;
+                foundOriginal = true;
+                neededModel = model;
             }
         }
+        if(foundDuplicate){
+            throw new DuplicateModelNameException("Модель с таким названием уже существует.");
+        }
+        if(!foundOriginal){
+            throw new NoSuchModelNameException("Модели с таким названием не существует.");
+        }
+        neededModel.setName(newName);
     }
     public String[] getModelsNames(){
         String[] modelsNames = new String[models.size()];
@@ -69,6 +80,7 @@ public class Moped {
         for(Model model : models){
             if(model.getName().equals(modelName)){
                 model.setPrice(newPrice);
+                return;
             }
         }
         throw new NoSuchModelNameException("Модели с таким названием не существует.");
@@ -89,9 +101,10 @@ public class Moped {
         models.add(new Model(modelName, modelPrice));
     }
     public void deleteModel(String modelName) throws NoSuchModelNameException{
-        for(Model model : models){
-            if(model.getName().equals(modelName)){
-                models.remove(model);
+        for(int i = 0; i < models.size(); i++){
+            if(models.get(i).getName().equals(modelName)){
+                models.remove(i);
+                return;
             }
         }
         throw new NoSuchModelNameException("Модели с таким названием не существует.");
