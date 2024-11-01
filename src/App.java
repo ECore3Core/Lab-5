@@ -20,5 +20,20 @@ public class App {
         scooter.deleteModel("Scooter2");
         scooter.setPrice("Scooter4", 50);
         scooter.printInfo();
+
+        //Задание 4
+        QuadBike quadBike = new QuadBike("Yamaha", 10);
+        quadBike.printInfo();
+        quadBike.deleteModel("QuadBike1");
+        quadBike.printInfo();
+        quadBike.setModelName("QuadBike4", "kal");
+        quadBike.setPrice("QuadBike2", 15);
+        quadBike.printInfo();
+        quadBike.addModel("bab", 5);
+        quadBike.printInfo();
+        String[] quadBikeNames = quadBike.getModelsNames();
+        for(String s : quadBikeNames){
+            System.out.print(s + " ");
+        }
     }
 }

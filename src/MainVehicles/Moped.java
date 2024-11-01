@@ -1,12 +1,10 @@
 package MainVehicles;
 
-import Vehicle.Vehicle;
-import java.util.ArrayList;
-
 import Exceptions.DuplicateModelNameException;
 import Exceptions.NoSuchModelNameException;
+import java.util.LinkedList;
 
-public class QuadBike implements Vehicle{
+public class Moped {
     private class Model{
         String modelName;
         double price;
@@ -28,10 +26,9 @@ public class QuadBike implements Vehicle{
         }
     }
     String mark;
-    ArrayList<Model> models;
-    public QuadBike(String mark, int modelsSize){
+    LinkedList<Model> models;
+    public Moped(String mark, int modelsSize){
         this.mark = mark;
-        models = new ArrayList<>();
         for(int i = 0; i < modelsSize; i++){
             models.add(new Model("QuadBike" + i, 100.0 + i));
         }
@@ -43,25 +40,15 @@ public class QuadBike implements Vehicle{
         mark = brand;
     }
     public void setModelName(String originalName, String newName) throws NoSuchModelNameException, DuplicateModelNameException{
-        boolean foundDuplicate = false;
-        boolean foundOriginal = false;
-        Model neededModel = models.get(0);
         for(Model model : models){
             if(model.getName().equals(newName)){
-                foundDuplicate = true;
+                throw new DuplicateModelNameException("Модель с таким названием уже существует.");
             }
             if(model.getName().equals(originalName)){
-                foundOriginal = true;
-                neededModel = model;
+                model.setName(newName);
+                break;
             }
         }
-        if(foundDuplicate){
-            throw new DuplicateModelNameException("Модель с таким названием уже существует.");
-        }
-        if(!foundOriginal){
-            throw new NoSuchModelNameException("Модели с таким названием не существует.");
-        }
-        neededModel.setName(newName);
     }
     public String[] getModelsNames(){
         String[] modelsNames = new String[models.size()];
@@ -82,7 +69,6 @@ public class QuadBike implements Vehicle{
         for(Model model : models){
             if(model.getName().equals(modelName)){
                 model.setPrice(newPrice);
-                return;
             }
         }
         throw new NoSuchModelNameException("Модели с таким названием не существует.");
@@ -106,7 +92,6 @@ public class QuadBike implements Vehicle{
         for(Model model : models){
             if(model.getName().equals(modelName)){
                 models.remove(model);
-                return;
             }
         }
         throw new NoSuchModelNameException("Модели с таким названием не существует.");
