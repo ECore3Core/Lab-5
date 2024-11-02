@@ -1,6 +1,7 @@
 import java.io.*;
 import java.lang.reflect.Constructor;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.lang.reflect.*;
 
 import Exceptions.DuplicateModelNameException;
@@ -116,5 +117,23 @@ public class Vehicles {
             e.printStackTrace();
         }
         return null;
+    }
+    public static double getVehiclesArithmeticalMean(Vehicle... vehicles){
+        ArrayList<Double> prices = new ArrayList<>();
+        double result = 0;
+        int count = 0;
+        for(Vehicle vehicle : vehicles){
+            double[] localPrices = vehicle.getModelsPrices();
+            Double[] localDoublePrices = new Double[vehicle.getModelsSize()];
+            for(int i = 0; i < vehicle.getModelsSize(); i++){
+                localDoublePrices[i] = localPrices[i];
+            }
+            prices.addAll(Arrays.asList(localDoublePrices));
+        }
+        for(Double price : prices){
+            result += price;
+            count++;
+        }
+        return count == 0 ? 0 : result / count;
     }
 }   

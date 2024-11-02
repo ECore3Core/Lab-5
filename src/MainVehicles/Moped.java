@@ -2,9 +2,11 @@ package MainVehicles;
 
 import Exceptions.DuplicateModelNameException;
 import Exceptions.NoSuchModelNameException;
+import Vehicle.Vehicle;
+
 import java.util.LinkedList;
 
-public class Moped {
+public class Moped implements Vehicle {
     private class Model{
         String modelName;
         double price;

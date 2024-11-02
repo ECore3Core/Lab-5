@@ -1,5 +1,8 @@
 import Reflection.Reflection;
 import Vehicle.Vehicle;
+
+import java.util.ArrayList;
+
 import Exceptions.DuplicateModelNameException;
 import Exceptions.NoSuchModelNameException;
 import MainVehicles.*;
@@ -17,10 +20,10 @@ public class App {
         //Задание 3
         Scooter scooter = new Scooter("LADA", 10);
         scooter.printInfo();
-        scooter.deleteModel("QuadBike1");
+        scooter.deleteModel("Scooter1");
         scooter.printInfo();
-        scooter.setModelName("QuadBike4", "kal");
-        scooter.setPrice("QuadBike2", 15);
+        scooter.setModelName("Scooter4", "kal");
+        scooter.setPrice("Scooter2", 15);
         scooter.printInfo();
         scooter.addModel("bab", 5);
         scooter.printInfo();
@@ -73,5 +76,8 @@ public class App {
             System.out.print(d + " ");
         }
         System.out.println();
+
+        //Задание 6
+        System.out.println(Vehicles.getVehiclesArithmeticalMean(scooter, quadBike, moped));
     }
 }
