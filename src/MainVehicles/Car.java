@@ -30,11 +30,6 @@ public class Car implements Vehicle{
         }
     }
     private Model[] models;
-    public Car(){}
-    public Car(String brandName){
-        brand = brandName;
-        models = new Model[0];
-    }
     public Car(String brand, int modelsLength){
         this.brand = brand;
         models = new Model[modelsLength];

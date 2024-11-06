@@ -1,6 +1,9 @@
 import Reflection.Reflection;
 import Vehicle.Vehicle;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import Exceptions.DuplicateModelNameException;
@@ -8,7 +11,7 @@ import Exceptions.NoSuchModelNameException;
 import MainVehicles.*;
 
 public class App {
-    public static void main(String[] args)throws NoSuchModelNameException, DuplicateModelNameException{
+    public static void main(String[] args)throws NoSuchModelNameException, DuplicateModelNameException, IOException{
         //Задание 1
         //Reflection.SetPriceByName(args[0], args[1], args[2], args[3]);
 
@@ -36,6 +39,7 @@ public class App {
             System.out.print(d + " ");
         }
         System.out.println();
+
 
         //Задание 4
         QuadBike quadBike = new QuadBike("Yamaha", 10);
@@ -79,5 +83,11 @@ public class App {
 
         //Задание 6
         System.out.println(Vehicles.getVehiclesArithmeticalMean(scooter, quadBike, moped));
+
+        //Задание 7
+        PrintWriter writer = new PrintWriter("text.txt");
+        Vehicles.writeVehicle(moped, writer);
+        Moped moped2 = (Moped) Vehicles.readVehicle(new FileReader("text.txt"));
+        moped2.printInfo();
     }
 }

@@ -43,10 +43,6 @@ public class Motorcycle implements Vehicle{
     private void updateLastModified(){
         lastModified = LocalDate.now();
     }
-    public Motorcycle(){}
-    public Motorcycle(String brandName){
-        brand = brandName;
-    }
     public Motorcycle(String brand, int modelLength){
         this.brand = brand;
         size = modelLength;
