@@ -4,6 +4,7 @@ import Vehicle.Vehicle;
 import java.util.ArrayList;
 
 import Exceptions.DuplicateModelNameException;
+import Exceptions.ModelPriceOutOfBoundsException;
 import Exceptions.NoSuchModelNameException;
 
 public class QuadBike implements Vehicle{
@@ -27,8 +28,8 @@ public class QuadBike implements Vehicle{
             return price;
         }
     }
-    String mark;
-    ArrayList<Model> models;
+    private String mark;
+    private ArrayList<Model> models;
     public QuadBike(String mark, int modelsSize){
         this.mark = mark;
         models = new ArrayList<>();
@@ -79,6 +80,9 @@ public class QuadBike implements Vehicle{
         throw new NoSuchModelNameException("Модели с таким названием не существует");
     }
     public void setPrice(String modelName, double newPrice) throws NoSuchModelNameException{
+        if(newPrice <= 0){
+            throw new ModelPriceOutOfBoundsException("Цена модели не может ыть меньше либо равна 0.");
+        }
         for(Model model : models){
             if(model.getName().equals(modelName)){
                 model.setPrice(newPrice);
@@ -95,6 +99,9 @@ public class QuadBike implements Vehicle{
         return modelsPrices;
     }
     public void addModel(String modelName, double modelPrice) throws DuplicateModelNameException{
+        if(modelPrice <= 0){
+            throw new ModelPriceOutOfBoundsException("Цена модели не может ыть меньше либо равна 0.");
+        }
         for(Model model : models){
             if(model.getName().equals(modelName)){
                 throw new DuplicateModelNameException("Модель с таким названием уже существует.");

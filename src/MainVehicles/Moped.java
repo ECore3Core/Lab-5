@@ -1,6 +1,7 @@
 package MainVehicles;
 
 import Exceptions.DuplicateModelNameException;
+import Exceptions.ModelPriceOutOfBoundsException;
 import Exceptions.NoSuchModelNameException;
 import Vehicle.Vehicle;
 
@@ -27,8 +28,8 @@ public class Moped implements Vehicle {
             return price;
         }
     }
-    String mark;
-    LinkedList<Model> models;
+    private String mark;
+    private LinkedList<Model> models;
     public Moped(String mark, int modelsSize){
         this.mark = mark;
         models = new LinkedList<>();
@@ -79,6 +80,9 @@ public class Moped implements Vehicle {
         throw new NoSuchModelNameException("Модели с таким названием не существует");
     }
     public void setPrice(String modelName, double newPrice) throws NoSuchModelNameException{
+        if(newPrice <= 0){
+            throw new ModelPriceOutOfBoundsException("Цена модели не может ыть меньше либо равна 0.");
+        }
         for(Model model : models){
             if(model.getName().equals(modelName)){
                 model.setPrice(newPrice);
@@ -95,6 +99,9 @@ public class Moped implements Vehicle {
         return modelsPrices;
     }
     public void addModel(String modelName, double modelPrice) throws DuplicateModelNameException{
+        if(modelPrice <= 0){
+            throw new ModelPriceOutOfBoundsException("Цена модели не может ыть меньше либо равна 0.");
+        }
         for(Model model : models){
             if(model.getName().equals(modelName)){
                 throw new DuplicateModelNameException("Модель с таким названием уже существует.");

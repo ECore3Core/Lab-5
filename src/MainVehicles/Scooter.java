@@ -3,8 +3,7 @@ package MainVehicles;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import Exceptions.DuplicateModelNameException;
-import Exceptions.NoSuchModelNameException;
+import Exceptions.*;
 import Vehicle.Vehicle;
 
 public class Scooter implements Vehicle{
@@ -45,6 +44,9 @@ public class Scooter implements Vehicle{
         return models.get(modelName);
     }
     public void setPrice(String modelName, double newPrice)throws NoSuchModelNameException{
+        if(newPrice <= 0){
+            throw new ModelPriceOutOfBoundsException("Цена модели не может ыть меньше либо равна 0.");
+        }
         if(!models.containsKey(modelName)){
             throw new NoSuchModelNameException("Модели с таким названием не существует.");
         }
@@ -57,6 +59,12 @@ public class Scooter implements Vehicle{
         return result;
     }
     public void addModel(String modelName, double modelPrice)throws DuplicateModelNameException{
+        if(modelPrice <= 0){
+            throw new ModelPriceOutOfBoundsException("Цена модели не может ыть меньше либо равна 0.");
+        }
+        if(modelPrice <= 0){
+            throw new ModelPriceOutOfBoundsException("Цена модели не может ыть меньше либо равна 0.");
+        }
         if(models.containsKey(modelName)){
             throw new DuplicateModelNameException("Модель с таким названием уже существует.");
         }
